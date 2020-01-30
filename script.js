@@ -1,8 +1,8 @@
 'use strict';
 
-let number = 50;
-
 let askNumber = function () {
+    let number = 50;
+
     let userNumber = prompt("Угадай число от 1 до 100");
 
     if (userNumber === null){
@@ -26,6 +26,7 @@ let askNumber = function () {
     };
 
     if (resultIsNumber === true) {
+        console.dir(compareNumber);
         compareNumber();
     } else {
         alert("Введите число!");
