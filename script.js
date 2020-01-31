@@ -1,39 +1,54 @@
 'use strict';
 
-let askNumber = function () {
-    let number = 50;
+let playGame = function () {
+    let number;
+    let minNumber = 1;
+    let maxNumber = 100;
 
-    let userNumber = prompt("Угадай число от 1 до 100");
+    function randomInteger() {
 
-    if (userNumber === null){
-        return;
+        let rand = minNumber + Math.random() * (maxNumber - minNumber);
+        number =  Math.floor(rand);
+        console.log(number);
     }
+    randomInteger();
 
-    let isNumber = function () {
-        return !isNaN(parseFloat(userNumber)) && isFinite(userNumber);
-    };
+    let askNumber = function() {
 
-    let resultIsNumber = isNumber();
+        let userNumber = prompt(`Угадай число от ` + minNumber + ` до ` + maxNumber);
 
-    let compareNumber = function () {
-        if (userNumber < number) {
-            alert("Загаданное число меньше");
-            askNumber();
+        if (userNumber === null) {
+            return alert("Игра завершена");
+        }
+
+
+        let isNumber = function () {
+            return !isNaN(parseFloat(userNumber)) && isFinite(userNumber);
+        };
+
+        let resultIsNumber = isNumber();
+
+        let compareNumber = function () {
+            if (number == userNumber) {
+                alert("Вы угадали!!!");
+            } else if (userNumber < number) {
+                alert("Загаданное число больше");
+                askNumber();
+            } else {
+                alert("Загаданное число меньше");
+                askNumber();
+            }
+        };
+
+        if (resultIsNumber === true) {
+            compareNumber();
         } else {
-            alert("Загаданное число больше");
+            alert('Введите число в диапазоне от ' + minNumber + ' до ' + maxNumber + ' !');
             askNumber();
         }
-    };
-
-    if (resultIsNumber === true) {
-        console.dir(compareNumber);
-        compareNumber();
-    } else {
-        alert("Введите число!");
-        askNumber();
     }
-
+    askNumber()
 };
-askNumber();
+playGame();
 
 
